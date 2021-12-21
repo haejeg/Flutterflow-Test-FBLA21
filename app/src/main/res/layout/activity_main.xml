@@ -2,11 +2,11 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/image_bgdark"
     tools:context=".MainActivity">
 
     <TextView
@@ -19,6 +19,8 @@
         android:textColor="@color/white"
         android:fontFamily="@font/ralewaybd"
         android:text="MyFossil" />
+
+
 
     <TextView
         android:id="@+id/textView2"
@@ -33,6 +35,14 @@
         android:layout_marginTop="@dimen/_2sdp"
         android:textSize="@dimen/_15sdp"
         android:text="Gradebook, modernized." />
+
+    <ImageView
+        android:id="@+id/imageview_bg"
+        android:layout_width="fill_parent"
+        android:translationZ="-1dp"
+        android:layout_height="fill_parent"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/image_bgdark" />
 
 
 </RelativeLayout>
