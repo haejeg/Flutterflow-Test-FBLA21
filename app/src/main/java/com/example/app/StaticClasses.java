@@ -1,8 +1,12 @@
 package com.example.app;
 
+import android.widget.RelativeLayout;
+
+import androidx.core.content.ContextCompat;
+
 public class StaticClasses {
     public static int randomIntFrom(int minimum, int maximum) {
-        return 1; //temp
+        return (int) ((Math.random() * (maximum - minimum)) + minimum);
     }
 
     public static void sleep(int ms) {
