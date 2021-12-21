@@ -22,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
 
+        //Yikes!
+
         bgview = findViewById(R.id.imageview_bg);
         SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
         theme = prefs.getBoolean(Settings.SWITCHTHEME, false); //Get value of switch
