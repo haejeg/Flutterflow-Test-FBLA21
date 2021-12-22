@@ -34,7 +34,7 @@
         android:fontFamily="sans-serif"
         android:layout_marginTop="@dimen/_2sdp"
         android:textSize="@dimen/_15sdp"
-        android:text="Gradebook, modernized." />
+        android:text="Fossil Ridge personalized" />
 
     <ImageView
         android:id="@+id/imageview_bg"

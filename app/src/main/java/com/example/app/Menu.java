@@ -32,7 +32,7 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
 
-        txtWeather = (TextView) findViewById(R.id.weather);
+        txtWeather = (TextView) findViewById(R.id.textView3);
 
 
         getWeatherDetails();

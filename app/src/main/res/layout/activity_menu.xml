@@ -40,7 +40,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="@dimen/_2sdp"
         android:fontFamily="sans-serif"
-        android:text="No internet connection."
+        android:text="Temperature Information"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
@@ -51,9 +51,9 @@
         android:layout_below="@+id/weather"
         android:layout_alignStart="@+id/textView"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_7sdp"
         android:fontFamily="sans-serif-light"
-        android:text="Theme mode"
+        android:text="No internet connection."
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
