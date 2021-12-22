@@ -58,7 +58,7 @@
         app:track="@drawable/custom_track" />
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch_"
+        android:id="@+id/switch_temp"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/_37sdp"
         android:layout_below="@+id/switch_thememode"

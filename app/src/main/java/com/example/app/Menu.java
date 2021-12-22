@@ -1,5 +1,6 @@
 package com.example.app;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ public class Menu extends AppCompatActivity {
     private TextView txtWeather;
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
     DecimalFormat df = new DecimalFormat("#.##");
+    public boolean temperatureMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +41,9 @@ public class Menu extends AppCompatActivity {
     }
 
     public void getWeatherDetails() {
+        //Load configurations
+        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
+        temperatureMode = prefs.getBoolean(Settings.TEMPSWITCH, false); //Get value of switch
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -48,16 +53,22 @@ public class Menu extends AppCompatActivity {
                     JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
                     String description = jsonObjectWeather.getString("description");
                     JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
-                    double temp = jsonObjectMain.getDouble("temp") - 273.15;
-                    double temp_min = jsonObjectMain.getDouble("temp_min") - 273.15;
-                    double temp_max = jsonObjectMain.getDouble("temp_max") - 273.15;
-                    double temp_feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
-//                    txtWeather2.setText("Feels like: " + df.format(temp_feelsLike) + " °C");
-                    txtWeather.setText("Temperature: " + df.format(temp) + " °C \n" + "Feels like: " + df.format(temp_feelsLike) + " °C");
-                    temp_min = Math.round(temp_min * 100.0) / 100.0;
-                    temp_max = Math.round(temp_max * 100.0) / 100.0;
-//                    boundTemp.setText("Max: " + temp_min + " °C | Min: " + temp_max + " °C");
-
+                    if (temperatureMode) {
+                        double temp = jsonObjectMain.getDouble("temp") - 273.15;
+                        double temp_min = jsonObjectMain.getDouble("temp_min") - 273.15;
+                        double temp_max = jsonObjectMain.getDouble("temp_max") - 273.15;
+                        double temp_feelsLike = jsonObjectMain.getDouble("feels_like") - 273.15;
+                        txtWeather.setText("Temperature: " + df.format(temp) + " °C \n" + "Feels like: " + df.format(temp_feelsLike) + " °C");
+                        temp_min = Math.round(temp_min * 100.0) / 100.0;
+                        temp_max = Math.round(temp_max * 100.0) / 100.0;
+                    }
+                    else {
+                        double temp = kelvinToFahrenhite(jsonObjectMain.getDouble("temp"));
+                        double temp_min = kelvinToFahrenhite(jsonObjectMain.getDouble("temp_min"));
+                        double temp_max = kelvinToFahrenhite(jsonObjectMain.getDouble("temp_max"));
+                        double temp_feelsLike =+ kelvinToFahrenhite(jsonObjectMain.getDouble("feels_like"));
+                        txtWeather.setText("Temperature: " + df.format(temp) + " °F \n" + "Feels like: " + df.format(temp_feelsLike) + " °F");
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -71,6 +82,10 @@ public class Menu extends AppCompatActivity {
         });
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         requestQueue.add(stringRequest);
+    }
+
+    public double kelvinToFahrenhite(double temperature) {
+        return (temperature - 273.15) * 1.8 + 32.00;
     }
 }
 
