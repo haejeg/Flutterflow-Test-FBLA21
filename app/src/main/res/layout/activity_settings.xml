@@ -47,10 +47,24 @@
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/switch_thememode"
         android:layout_width="wrap_content"
-        android:layout_height="1dp"
+        android:layout_height="@dimen/_37sdp"
         android:layout_alignTop="@+id/textView3"
         android:layout_alignParentEnd="true"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_minus6sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:thumb="@drawable/custom_thumb"
+        app:showText="false"
+        app:track="@drawable/custom_track" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_37sdp"
+        android:layout_below="@+id/switch_thememode"
+        android:layout_alignParentEnd="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_minus8sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:thumb="@drawable/custom_thumb"
         app:showText="false"
@@ -66,6 +80,19 @@
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="sans-serif-light"
         android:text="Theme mode"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_15sdp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/switch_thememode"
+        android:layout_alignStart="@+id/textView"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="@dimen/_minus1sdp"
+        android:fontFamily="sans-serif-light"
+        android:text="Temperature mode"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
