@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.app">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="MyFossil"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
+        android:usesCleartextTraffic="true"
         android:theme="@style/lightTheme">
         <activity
             android:name=".MainActivity"
@@ -20,6 +21,7 @@
         </activity>
 
         <activity android:name=".Settings"></activity>
+        <activity android:name=".Menu"></activity>
     </application>
 
 </manifest>

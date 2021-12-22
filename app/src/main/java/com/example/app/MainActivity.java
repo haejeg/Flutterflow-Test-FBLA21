@@ -22,7 +22,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private ImageView bgview;
     public static boolean theme;
-    private Button button;
+    private Button button, button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Settings.class);
                 startActivity(intent);
+            }
+        });
+
+        button2 = findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent2 = new Intent(MainActivity.this, Menu.class);
+                startActivity(intent2);
             }
         });
     }
