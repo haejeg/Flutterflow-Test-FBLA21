@@ -18,8 +18,11 @@ public class Settings extends AppCompatActivity {
     private SwitchCompat switchTheme;
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String SWITCHTHEME = "switch_thememode";
+    public static final String TEMPSWITCH = "switch_";
     private boolean switchThemeCheck;
-    public static boolean theme;
+    private boolean switchTemperatureCheck;
+    private SwitchCompat switchTemperature;
+    public boolean temperatureMode;
     private ImageView bgview;
 
     @Override
@@ -33,6 +36,7 @@ public class Settings extends AppCompatActivity {
         //Declarations
         switchTheme = (SwitchCompat) findViewById(R.id.switch_thememode);
         bgview = findViewById(R.id.imageview_bg);
+        switchTemperature = (SwitchCompat) findViewById(R.id.switch_);
 
         loadConfig(); //Loads settings config
         checkTheme(); //Initial check
@@ -45,13 +49,25 @@ public class Settings extends AppCompatActivity {
                 //Sets theme bg
                 if (switchTheme.isChecked()) {
                     bgview.setImageResource(R.drawable.image_bglight);
-                    theme = true;
                 }
                 else {
                     bgview.setImageResource(R.drawable.image_bgdark);
-                    theme = false;
                 }
                 checkTheme(); //Double check
+            }
+        });
+
+        switchTheme.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveSwitch(SWITCHTHEME, switchTheme.isChecked());
+                //Sets theme bg
+                if (switchTemperature.isChecked()) {
+                    temperatureMode = true;
+                }
+                else {
+                    temperatureMode = false;
+                }
             }
         });
     }
@@ -59,11 +75,9 @@ public class Settings extends AppCompatActivity {
     public void checkTheme() { //Checks theme and initializes it properly
         if (switchTheme.isChecked()) {
             bgview.setImageResource(R.drawable.image_bglight);
-            theme = true;
         }
         else {
             bgview.setImageResource(R.drawable.image_bgdark);
-            theme = false;
         }
     }
 
@@ -77,8 +91,10 @@ public class Settings extends AppCompatActivity {
     public void loadConfig() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
         switchThemeCheck = prefs.getBoolean(SWITCHTHEME, false); //Gets value of themecheck and loads it
+        switchTemperatureCheck = prefs.getBoolean(SWITCHTHEME, false); //Gets value of temperature check and loads it
 
         //Visual Loader (like sets it true or false visual wise)
         switchTheme.setChecked(switchThemeCheck);
+        switchTemperature.setChecked(switchTemperatureCheck);
     }
 }
