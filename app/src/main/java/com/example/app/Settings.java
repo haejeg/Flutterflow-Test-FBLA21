@@ -3,7 +3,10 @@ package com.example.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.transition.Explode;
+import android.transition.Transition;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -21,7 +24,9 @@ public class Settings extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Stuff up here are defaults unless commented
         super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.fadein, R.anim.fadeout); //Fade in and out animation
         setContentView(R.layout.activity_settings);
         getSupportActionBar().hide();
 
@@ -32,11 +37,13 @@ public class Settings extends AppCompatActivity {
         loadConfig(); //Loads settings config
         checkTheme(); //Initial check
 
-        switchTheme.setOnClickListener(new View.OnClickListener() { //Switch onClickListener
+        //Switch onClickListener like if the switch was to get clicked, it would set this function off.
+        switchTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 saveSwitch(SWITCHTHEME, switchTheme.isChecked());
-                if (switchTheme.isChecked()) { //Sets theme bg
+                //Sets theme bg
+                if (switchTheme.isChecked()) {
                     bgview.setImageResource(R.drawable.image_bglight);
                     theme = true;
                 }
@@ -50,7 +57,6 @@ public class Settings extends AppCompatActivity {
     }
 
     public void checkTheme() { //Checks theme and initializes it properly
-        StaticClasses.sleep(50);
         if (switchTheme.isChecked()) {
             bgview.setImageResource(R.drawable.image_bglight);
             theme = true;
@@ -72,7 +78,7 @@ public class Settings extends AppCompatActivity {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
         switchThemeCheck = prefs.getBoolean(SWITCHTHEME, false); //Gets value of themecheck and loads it
 
-        //Visual Loader
+        //Visual Loader (like sets it true or false visual wise)
         switchTheme.setChecked(switchThemeCheck);
     }
 }

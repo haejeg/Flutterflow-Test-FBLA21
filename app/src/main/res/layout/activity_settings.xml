@@ -25,9 +25,9 @@
     <ImageView
         android:id="@+id/imageview_bg"
         android:layout_width="fill_parent"
-        android:translationZ="-1dp"
         android:layout_height="fill_parent"
         android:scaleType="centerCrop"
+        android:translationZ="-1dp"
         app:srcCompat="@drawable/image_bgdark" />
 
 

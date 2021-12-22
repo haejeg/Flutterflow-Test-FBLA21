@@ -13,7 +13,7 @@
         android:id="@+id/text_myfossil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_50sdp"
+        android:layout_marginStart="@dimen/_30sdp"
         android:textSize="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_200sdp"
         android:textColor="@color/white"
@@ -39,10 +39,19 @@
     <ImageView
         android:id="@+id/imageview_bg"
         android:layout_width="fill_parent"
-        android:translationZ="-1dp"
         android:layout_height="fill_parent"
         android:scaleType="centerCrop"
+        android:translationZ="-1dp"
         app:srcCompat="@drawable/image_bgdark" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="96dp"
+        android:text="Button" />
 
 
 </RelativeLayout>

@@ -1,8 +1,13 @@
 package com.example.app;
 
+import android.os.Handler;
+import android.os.SystemClock;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
+
+import org.w3c.dom.Text;
 
 public class StaticClasses {
     public static int randomIntFrom(int minimum, int maximum) {
@@ -10,14 +15,11 @@ public class StaticClasses {
     }
 
     public static void sleep(int ms) {
-        //Sleep function
-        try
-        {
+        try {
             Thread.sleep(ms);
         }
-        catch(InterruptedException ex)
-        {
-            Thread.currentThread().interrupt();
+        catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
