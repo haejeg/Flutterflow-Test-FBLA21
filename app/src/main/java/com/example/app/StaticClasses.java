@@ -1,6 +1,8 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -15,11 +17,12 @@ public class StaticClasses {
     }
 
     public static void sleep(int ms) {
-        try {
-            Thread.sleep(ms);
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
+        final Handler handler = new Handler(Looper.getMainLooper());
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //Delayed run
+            }
+        }, ms);
     }
 }

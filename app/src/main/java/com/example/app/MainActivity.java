@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.SystemClock;
 import android.transition.Explode;
 import android.transition.Transition;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
     private ImageView bgview;
     public static boolean theme;
-    private Button button, button2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +47,27 @@ public class MainActivity extends AppCompatActivity {
             bgview.setImageResource(R.drawable.image_bgdark);
         }
 
-        //this is temporary lol
-        button = findViewById(R.id.button);
-        button.setOnClickListener(new View.OnClickListener() {
+        handler();
+    }
+
+    private void handler() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        Animation a = AnimationUtils.loadAnimation(this, R.anim.fadein);
+        a.reset();
+        TextView fossilText = (TextView) findViewById(R.id.text_myfossil);
+        TextView descText = (TextView) findViewById(R.id.textView2);
+        descText.clearAnimation();
+        descText.startAnimation(a);
+        fossilText.clearAnimation();
+        fossilText.startAnimation(a);
+
+        handler.postDelayed(new Runnable() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Settings.class);
+            public void run() {
+                //Do something after 100ms
+                Intent intent = new Intent(MainActivity.this, Menu.class);
                 startActivity(intent);
             }
-        });
-
-        button2 = findViewById(R.id.button2);
-        button2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent2 = new Intent(MainActivity.this, Menu.class);
-                startActivity(intent2);
-            }
-        });
+        }, 3000);
     }
 }

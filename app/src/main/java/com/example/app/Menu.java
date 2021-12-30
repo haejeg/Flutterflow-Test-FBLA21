@@ -1,7 +1,12 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +30,7 @@ public class Menu extends AppCompatActivity {
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
     DecimalFormat df = new DecimalFormat("#.##");
     public boolean temperatureMode;
+    public ImageButton settingsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +41,17 @@ public class Menu extends AppCompatActivity {
         getSupportActionBar().hide();
 
         txtWeather = (TextView) findViewById(R.id.textView3);
-
+        settingsButton = (ImageButton) findViewById(R.id.imageButton);
 
         getWeatherDetails();
+
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, Settings.class);
+                startActivity(intent);
+            }
+        });
     }
 
     public void getWeatherDetails() {

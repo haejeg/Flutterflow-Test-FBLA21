@@ -57,4 +57,18 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/icon_settings"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
 </RelativeLayout>
