@@ -3,6 +3,7 @@ package com.example.app;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,11 +23,18 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Menu extends AppCompatActivity {
-    private TextView txtWeather;
+    private TextView txtWeather, txtFood;
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
     DecimalFormat df = new DecimalFormat("#.##");
     public boolean temperatureMode;
@@ -42,8 +50,11 @@ public class Menu extends AppCompatActivity {
 
         txtWeather = (TextView) findViewById(R.id.textView3);
         settingsButton = (ImageButton) findViewById(R.id.imageButton);
+        txtFood = (TextView) findViewById(R.id.textView4);
 
         getWeatherDetails();
+        webscrape web = new webscrape();
+        web.execute();
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,6 +63,37 @@ public class Menu extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private class webscrape extends AsyncTask<Void, Void, Void> {
+        String desc;
+        @Override
+        protected Void doInBackground(Void... voids) {
+            Date time = Calendar.getInstance().getTime();
+            try {
+                String url = "https://psdschools.nutrislice.com/menu/fossil-ridge/lunch/" + time.getYear() + "-" + time.getMonth() + "-" + time.getDate();
+                Document doc = Jsoup.connect(url).get();
+                Elements data = doc.getElementsByClass("carbs-table-strongtitle-date");
+//                String url = "https://www.google.com/search?q=mesozoic+era&rlz=1C1ASUM_enUS962US962&sxsrf=AOaemvKDheYKNsLYk_AAuZ8vq320XYyNLg%3A1640987939561&ei=I33PYbLdIcewqtsPl_WNsAU&oq=mesoera&gs_lcp=Cgdnd3Mtd2l6EAMYADIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yCAgAEAcQChAeMgYIABAHEB46BwgAEEcQsAM6BwgAELADEEM6CAgAEOQCELADOhAILhDHARCjAhDIAxCwAxBDOhAILhDHARDRAxDIAxCwAxBDOgoILhDIAxCwAxBDOg0ILhCxAxDHARDRAxBDOgUIABCABDoHCAAQsQMQQ0oECEEYAEoECEYYAVD7BliZCWDXEGgBcAJ4AIABaIgBgAOSAQMyLjKYAQCgAQHIARPAAQE&sclient=gws-wiz";
+//                Document doc = Jsoup.connect(url).get();
+//                Elements data = doc.getElementsByClass("hgKElc");
+                for (int i = 0; i < data.size(); i++) {
+
+                }
+                desc = data.text();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+//            Toast.makeText(Menu.this, (String) desc, Toast.LENGTH_LONG).show();
+//            txtFood.setText(desc);
+        }
     }
 
     public void getWeatherDetails() {
