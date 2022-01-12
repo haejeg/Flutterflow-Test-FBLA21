@@ -22,6 +22,7 @@
 
         <activity android:name=".Settings"></activity>
         <activity android:name=".Menu"></activity>
+        <activity android:name=".ScheduleAdder"></activity>
     </application>
 
 </manifest>

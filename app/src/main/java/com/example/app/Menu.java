@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,10 +36,12 @@ import java.util.Date;
 
 public class Menu extends AppCompatActivity {
     private TextView txtWeather, txtFood;
+    private ImageView bgview;
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
     DecimalFormat df = new DecimalFormat("#.##");
     public boolean temperatureMode;
     public ImageButton settingsButton;
+    public ImageView addScheduleButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,13 +51,30 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
 
+        bgview = findViewById(R.id.imageview_bg);
+        if (MainActivity.theme) {
+            bgview.setImageResource(R.drawable.image_bglight);
+        }
+        else {
+            bgview.setImageResource(R.drawable.image_bgdark);
+        }
+
         txtWeather = (TextView) findViewById(R.id.textView3);
         settingsButton = (ImageButton) findViewById(R.id.imageButton);
         txtFood = (TextView) findViewById(R.id.textView4);
+        addScheduleButton = (ImageView) findViewById(R.id.imageView);
 
         getWeatherDetails();
-        webscrape web = new webscrape();
-        web.execute();
+//        webscrape web = new webscrape();
+//        web.execute();
+
+        addScheduleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, ScheduleAdder.class);
+                startActivity(intent);
+            }
+        });
 
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,36 +85,39 @@ public class Menu extends AppCompatActivity {
         });
     }
 
-    private class webscrape extends AsyncTask<Void, Void, Void> {
-        String desc;
-        @Override
-        protected Void doInBackground(Void... voids) {
-            Date time = Calendar.getInstance().getTime();
-            try {
-                String url = "https://psdschools.nutrislice.com/menu/fossil-ridge/lunch/" + time.getYear() + "-" + time.getMonth() + "-" + time.getDate();
-                Document doc = Jsoup.connect(url).get();
-                Elements data = doc.getElementsByClass("carbs-table-strongtitle-date");
-//                String url = "https://www.google.com/search?q=mesozoic+era&rlz=1C1ASUM_enUS962US962&sxsrf=AOaemvKDheYKNsLYk_AAuZ8vq320XYyNLg%3A1640987939561&ei=I33PYbLdIcewqtsPl_WNsAU&oq=mesoera&gs_lcp=Cgdnd3Mtd2l6EAMYADIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yCAgAEAcQChAeMgYIABAHEB46BwgAEEcQsAM6BwgAELADEEM6CAgAEOQCELADOhAILhDHARCjAhDIAxCwAxBDOhAILhDHARDRAxDIAxCwAxBDOgoILhDIAxCwAxBDOg0ILhCxAxDHARDRAxBDOgUIABCABDoHCAAQsQMQQ0oECEEYAEoECEYYAVD7BliZCWDXEGgBcAJ4AIABaIgBgAOSAQMyLjKYAQCgAQHIARPAAQE&sclient=gws-wiz";
-//                Document doc = Jsoup.connect(url).get();
-//                Elements data = doc.getElementsByClass("hgKElc");
-                for (int i = 0; i < data.size(); i++) {
-
-                }
-                desc = data.text();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void unused) {
-            super.onPostExecute(unused);
-//            Toast.makeText(Menu.this, (String) desc, Toast.LENGTH_LONG).show();
-//            txtFood.setText(desc);
-        }
-    }
+//    private class webscrape extends AsyncTask<Void, Void, Void> {
+//        String desc;
+//        @Override
+//        protected Void doInBackground(Void... voids) {
+//            Date time = Calendar.getInstance().getTime();
+////            try {
+////                String url = "https://psdschools.nutrislice.com/menu/fossil-ridge/lunch/" + time.getYear() + "-" + time.getMonth() + "-" + time.getDate();
+////                String url = "https://psdschools.nutrislice.com/menu/fossil-ridge/lunch/2022-01-10";
+////                Document doc = Jsoup.connect(url).get();
+////                Elements data = doc.getElementsByAttribute("span.food-name");
+////                Elements elements = doc.select("span.food-name");
+////                String url = "https://www.google.com/search?q=mesozoic+era&rlz=1C1ASUM_enUS962US962&sxsrf=AOaemvKDheYKNsLYk_AAuZ8vq320XYyNLg%3A1640987939561&ei=I33PYbLdIcewqtsPl_WNsAU&oq=mesoera&gs_lcp=Cgdnd3Mtd2l6EAMYADIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yBggAEAcQHjIGCAAQBxAeMgYIABAHEB4yCAgAEAcQChAeMgYIABAHEB46BwgAEEcQsAM6BwgAELADEEM6CAgAEOQCELADOhAILhDHARCjAhDIAxCwAxBDOhAILhDHARDRAxDIAxCwAxBDOgoILhDIAxCwAxBDOg0ILhCxAxDHARDRAxBDOgUIABCABDoHCAAQsQMQQ0oECEEYAEoECEYYAVD7BliZCWDXEGgBcAJ4AIABaIgBgAOSAQMyLjKYAQCgAQHIARPAAQE&sclient=gws-wiz";
+////                Document doc = Jsoup.connect(url).get();
+////                Elements data = doc.getElementsByClass("hgKElc");
+////                for (Element i : elements) {
+////                    Toast.makeText(getApplication().getBaseContext(), i.text(), Toast.LENGTH_SHORT).show();
+////                }
+////                    txtFood.setText((CharSequence) data);
+//
+//
+////            } catch (IOException e) {
+////                e.printStackTrace();
+////            }
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(Void unused) {
+//            super.onPostExecute(unused);
+////            Toast.makeText(Menu.this, (String) desc, Toast.LENGTH_LONG).show();
+////            txtFood.setText(desc);
+//        }
+//    }
 
     public void getWeatherDetails() {
         //Load configurations
