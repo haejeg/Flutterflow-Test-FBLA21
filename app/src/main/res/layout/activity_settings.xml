@@ -40,7 +40,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="@dimen/_2sdp"
         android:fontFamily="sans-serif"
-        android:text="Configurate MyFossil to your liking."
+        android:text="Configurate the app to your liking."
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
@@ -95,5 +95,36 @@
         android:text="Temperature mode"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/savebutton"
+        android:layout_width="@dimen/_110sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_4sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:clickable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="@dimen/_1sdp"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:fontFamily="sans-serif-light"
+            android:textSize="@dimen/_14sdp"
+            android:text="Save Settings"
+            android:textAlignment="center"
+            android:textColor="@color/white" />
+    </com.google.android.material.card.MaterialCardView>
+
 
 </RelativeLayout>

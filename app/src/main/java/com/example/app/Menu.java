@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
@@ -40,8 +42,14 @@ public class Menu extends AppCompatActivity {
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
     DecimalFormat df = new DecimalFormat("#.##");
     public boolean temperatureMode;
-    public ImageButton settingsButton;
-    public ImageView addScheduleButton;
+    private ImageButton settingsButton;
+    private ImageView addScheduleButton;
+    private TextView txtCalender;
+    private String title;
+    private String startTime;
+    private String endTime;
+    private String description;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +59,9 @@ public class Menu extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         getSupportActionBar().hide();
 
+        TinyDB tinydb = new TinyDB(getApplicationContext());
+
+
         bgview = findViewById(R.id.imageview_bg);
         if (MainActivity.theme) {
             bgview.setImageResource(R.drawable.image_bglight);
@@ -59,14 +70,21 @@ public class Menu extends AppCompatActivity {
             bgview.setImageResource(R.drawable.image_bgdark);
         }
 
-        txtWeather = (TextView) findViewById(R.id.textView3);
-        settingsButton = (ImageButton) findViewById(R.id.imageButton);
-        txtFood = (TextView) findViewById(R.id.textView4);
-        addScheduleButton = (ImageView) findViewById(R.id.imageView);
+        txtCalender = findViewById(R.id.textView5);
+        txtWeather = findViewById(R.id.textView3);
+        settingsButton = findViewById(R.id.imageButton);
+        txtFood =  findViewById(R.id.textView4);
+        addScheduleButton = findViewById(R.id.imageView);
 
         getWeatherDetails();
 //        webscrape web = new webscrape();
 //        web.execute();
+
+        //Load stored Strings
+        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
+//        Schedule schedule = tinydb.getObject(Settings.schedule, Schedule.class);
+
+        txtCalender.setText(tinydb.getString(Settings.title) + "\n" + tinydb.getString(Settings.title2) + "\n" + tinydb.getString(Settings.title3) + "\n" + tinydb.getString(Settings.title4));
 
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override

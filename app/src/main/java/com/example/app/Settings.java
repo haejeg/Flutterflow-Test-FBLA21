@@ -1,7 +1,9 @@
 package com.example.app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.RenderEffect;
 import android.os.Bundle;
 import android.transition.Explode;
 import android.transition.Transition;
@@ -14,16 +16,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
+import com.google.android.material.card.MaterialCardView;
+
 public class Settings extends AppCompatActivity {
     private SwitchCompat switchTheme;
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String SWITCHTHEME = "switch_thememode";
-    public static final String TEMPSWITCH = "switch_temp";
     private boolean switchThemeCheck;
     private boolean switchTemperatureCheck;
     private SwitchCompat switchTemperature;
     public boolean temperatureMode;
     private ImageView bgview;
+    private MaterialCardView savebutton;
+
+    //SHARED PREFERENCES AKA SETTINGS SAVER//
+    public static final String SHARED_PREFS = "sharedPrefs";
+    public static final String SWITCHTHEME = "switch_thememode";
+    public static final String TEMPSWITCH = "switch_temp";
+    public static final String title = "string_title";
+    public static final String title2 = "string_title1";
+    public static final String title3 = "string_title2";
+    public static final String title4 = "string_title3";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +45,22 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //Declarations
-        switchTheme = (SwitchCompat) findViewById(R.id.switch_thememode);
+        switchTheme = findViewById(R.id.switch_thememode);
         bgview = findViewById(R.id.imageview_bg);
-        switchTemperature = (SwitchCompat) findViewById(R.id.switch_temp);
+        switchTemperature = findViewById(R.id.switch_temp);
+        savebutton = findViewById(R.id.savebutton);
 
         loadConfig(); //Loads settings config
         checkTheme(); //Initial check
+
+        savebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //yes, just in case you are confused, this doesn't do anything except restart the application!
+                Intent intent = new Intent(Settings.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         //Switch onClickListener like if the switch was to get clicked, it would set this function off.
         switchTheme.setOnClickListener(new View.OnClickListener() {
@@ -53,7 +74,6 @@ public class Settings extends AppCompatActivity {
                 else {
                     bgview.setImageResource(R.drawable.image_bgdark);
                 }
-                checkTheme(); //Double check
             }
         });
 
@@ -63,6 +83,7 @@ public class Settings extends AppCompatActivity {
                 saveSwitch(TEMPSWITCH, switchTemperature.isChecked());
                 //Sets theme bg
                 if (switchTemperature.isChecked()) {
+
                     temperatureMode = true;
                 }
                 else {

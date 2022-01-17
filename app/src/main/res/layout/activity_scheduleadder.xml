@@ -27,7 +27,7 @@
         android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="@font/ralewaybd"
-        android:text="Add a new schedule"
+        android:text="Schedule Manager"
         android:textColor="@color/white"
         android:textSize="@dimen/_30sdp" />
 
@@ -49,55 +49,57 @@
     <EditText
         android:id="@+id/editTextTextPersonName2"
         android:layout_width="384dp"
-        android:layout_height="@dimen/_100sdp"
-        android:layout_below="@+id/editTextTime2"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/editTextTextPersonName"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
         android:layout_marginEnd="@dimen/_10sdp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Description"
+        android:text="New schedule name"
         android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/editTextTime"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTextPersonName"
+        android:id="@+id/editTextTextPersonName3"
+        android:layout_width="384dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/editTextTextPersonName2"
         android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginStart="@dimen/_10sdp"
-        android:layout_marginTop="@dimen/_8sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:ems="10"
-        android:inputType="time"
-        android:text="Start time"
-        android:textColor="@color/white"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:inputType="textPersonName"
+        android:text="New schedule name"
+        android:textColor="@color/white" />
 
     <EditText
-        android:id="@+id/editTextTime2"
-        android:layout_width="@dimen/_100sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/editTextTextPersonName"
-        android:layout_marginStart="@dimen/_5sdp"
-        android:layout_marginTop="@dimen/_8sdp"
-        android:layout_toEndOf="@+id/editTextTime"
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="384dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/editTextTextPersonName3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
         android:ems="10"
-        android:inputType="time"
-        android:text="End time"
-        android:textColor="@color/white"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:inputType="textPersonName"
+        android:text="New schedule name"
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/button"
-        android:backgroundTint="#302b40"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/_35sdp"
-        android:text="Add new" />
+        android:backgroundTint="#302b40"
+        android:text="Save" />
 
 
 </RelativeLayout>

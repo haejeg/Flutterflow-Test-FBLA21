@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.app"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="21"
+        android:targetSdkVersion="31" />
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:icon="@drawable/icon"
         android:label="MyFossil"
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/lightTheme">
+        android:testOnly="true"
+        android:theme="@style/lightTheme"
+        android:usesCleartextTraffic="true" >
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
+            android:name="com.example.app.MainActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".Settings"></activity>
-        <activity android:name=".Menu"></activity>
-        <activity android:name=".ScheduleAdder"></activity>
+        <activity android:name="com.example.app.Settings" />
+        <activity android:name="com.example.app.Menu" />
+        <activity android:name="com.example.app.ScheduleAdder" />
     </application>
 
 </manifest>
