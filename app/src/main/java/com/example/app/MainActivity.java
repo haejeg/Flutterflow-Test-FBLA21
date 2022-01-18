@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView bgview;
-    public static boolean theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +36,10 @@ public class MainActivity extends AppCompatActivity {
 
         //Load configurations
         SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
-        theme = prefs.getBoolean(Settings.SWITCHTHEME, false); //Get value of switch
 
-        //Loads the theme accordingly
-        if (theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
+        TinyDB tinydb = new TinyDB(getApplicationContext());
+        if (tinydb.getBoolean(Settings.SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
+        else bgview.setImageResource(R.drawable.image_bgdark);
 
         handler();
     }

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,23 +36,23 @@ import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.time.Year;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
 public class Menu extends AppCompatActivity {
+    private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f"; //string for weather. real time
+    DecimalFormat df = new DecimalFormat("#.##"); //rounding
+
+    //ui elements
     private TextView txtWeather, txtFood;
     private ImageView bgview;
-    private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f";
-    DecimalFormat df = new DecimalFormat("#.##");
     public boolean temperatureMode;
     private ImageButton settingsButton;
     private ImageView addScheduleButton;
     private TextView txtCalender;
-    private String title;
-    private String startTime;
-    private String endTime;
-    private String description;
-
+    private TextView txtLunch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,31 +64,39 @@ public class Menu extends AppCompatActivity {
 
         TinyDB tinydb = new TinyDB(getApplicationContext());
 
-
         bgview = findViewById(R.id.imageview_bg);
-        if (MainActivity.theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
 
+        //theme check
+        if (tinydb.getBoolean(Settings.SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
+        else bgview.setImageResource(R.drawable.image_bgdark);
+
+        //declare ui elements here
         txtCalender = findViewById(R.id.textView5);
         txtWeather = findViewById(R.id.textView3);
         settingsButton = findViewById(R.id.imageButton);
         txtFood =  findViewById(R.id.textView4);
         addScheduleButton = findViewById(R.id.imageView);
+        txtLunch = findViewById(R.id.textView7);
 
+        //get calender stuff so lunch menu hyperlink stays updated and requires no manual stuff
+        int year = Calendar.getInstance().get(Calendar.YEAR); //2022
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+        int date = Calendar.getInstance().get(Calendar.DATE);
+
+        //set hyperlink for lunch menu
+        txtLunch.setClickable(true);
+        txtLunch.setMovementMethod(LinkMovementMethod.getInstance());
+        txtLunch.setTextColor(Color.parseColor("#FFFFFF"));
+        String text = "<a href='https://psdschools.nutrislice.com/menu/fossil-ridge/lunch/" + year + "-" + month + "-" + date + "'> Lunch Menu </a>";
+        txtLunch.setText(Html.fromHtml(text));
+
+        //get weather details, current temp and what it feels like (requires internet)
         getWeatherDetails();
-//        webscrape web = new webscrape();
-//        web.execute();
 
-        //Load stored Strings
-        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
-//        Schedule schedule = tinydb.getObject(Settings.schedule, Schedule.class);
-
+        //sets schedule
         txtCalender.setText(tinydb.getString(Settings.title) + "\n" + tinydb.getString(Settings.title2) + "\n" + tinydb.getString(Settings.title3) + "\n" + tinydb.getString(Settings.title4));
 
+        //onclicklistener to change schedules
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +105,7 @@ public class Menu extends AppCompatActivity {
             }
         });
 
+        //onclicklistener for settings button.
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +115,10 @@ public class Menu extends AppCompatActivity {
         });
     }
 
+    //used to scrape things off websites etc, probably not going to be used as it was originally planned for lunch menu display but lunch menu display at nutrislice sucks
+
+    //        webscrape web = new webscrape();
+//        web.execute();
 //    private class webscrape extends AsyncTask<Void, Void, Void> {
 //        String desc;
 //        @Override
@@ -139,8 +155,8 @@ public class Menu extends AppCompatActivity {
 
     public void getWeatherDetails() {
         //Load configurations
-        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
-        temperatureMode = prefs.getBoolean(Settings.TEMPSWITCH, false); //Get value of switch
+        TinyDB tinydb = new TinyDB(getApplicationContext());
+        temperatureMode = tinydb.getBoolean(Settings.TEMPSWITCH);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -150,7 +166,7 @@ public class Menu extends AppCompatActivity {
                     JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
                     String description = jsonObjectWeather.getString("description");
                     JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
-                    if (temperatureMode) {
+                    if (temperatureMode) { //if celsius else fahrenhite
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
                         double temp_min = jsonObjectMain.getDouble("temp_min") - 273.15;
                         double temp_max = jsonObjectMain.getDouble("temp_max") - 273.15;
@@ -182,6 +198,7 @@ public class Menu extends AppCompatActivity {
     }
 
     public double kelvinToFahrenhite(double temperature) {
+        //why are the conversions so dumb
         return (temperature - 273.15) * 1.8 + 32.00;
     }
 }

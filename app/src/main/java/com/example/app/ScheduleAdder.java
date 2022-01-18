@@ -35,28 +35,25 @@ public class ScheduleAdder extends AppCompatActivity {
         title3 = findViewById(R.id.editTextTextPersonName3);
         title4 = findViewById(R.id.editTextTextPersonName4);
 
+        //pre load text from previous configuration so they dont have to retype again and again
         title.setText(tinydb.getString(Settings.title));
         title2.setText(tinydb.getString(Settings.title2));
         title3.setText(tinydb.getString(Settings.title3));
         title4.setText(tinydb.getString(Settings.title4));
 
         //Theme check
-        if (MainActivity.theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
+        if (tinydb.getBoolean(Settings.SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
+        else bgview.setImageResource(R.drawable.image_bgdark);
 
+        //onclicklistener for the save button for the scheduler (also starts a new intent for menu)
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //this is incorrect i think
                 tinydb.putString(Settings.title, title.getText().toString());
                 tinydb.putString(Settings.title2, title2.getText().toString());
                 tinydb.putString(Settings.title3, title3.getText().toString());
                 tinydb.putString(Settings.title4, title4.getText().toString());
-                Intent intent = new Intent(ScheduleAdder.this, MainActivity.class);
+                Intent intent = new Intent(ScheduleAdder.this, Menu.class);
                 startActivity(intent);
             }
         });
