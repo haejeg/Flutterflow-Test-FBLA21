@@ -17,10 +17,12 @@
         android:icon="@drawable/icon"
         android:label="MyFossil"
         android:roundIcon="@drawable/icon"
+        android:debuggable="true"
         android:supportsRtl="true"
-        android:testOnly="true"
+        android:testOnly="false"
         android:theme="@style/lightTheme"
-        android:usesCleartextTraffic="true" >
+        android:usesCleartextTraffic="true"
+        tools:ignore="HardcodedDebugMode">
         <activity
             android:name="com.example.app.MainActivity"
             android:exported="true" >

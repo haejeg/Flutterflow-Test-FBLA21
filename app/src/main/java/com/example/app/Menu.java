@@ -66,10 +66,6 @@ public class Menu extends AppCompatActivity {
 
         bgview = findViewById(R.id.imageview_bg);
 
-        //theme check
-        if (tinydb.getBoolean(Settings.SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
-        else bgview.setImageResource(R.drawable.image_bgdark);
-
         //declare ui elements here
         txtCalender = findViewById(R.id.textView5);
         txtWeather = findViewById(R.id.textView3);
@@ -95,6 +91,13 @@ public class Menu extends AppCompatActivity {
 
         //sets schedule
         txtCalender.setText(tinydb.getString(Settings.title) + "\n" + tinydb.getString(Settings.title2) + "\n" + tinydb.getString(Settings.title3) + "\n" + tinydb.getString(Settings.title4));
+
+        if (MainActivity.theme) {
+            bgview.setImageResource(R.drawable.image_bglight);
+        }
+        else {
+            bgview.setImageResource(R.drawable.image_bgdark);
+        }
 
         //onclicklistener to change schedules
         addScheduleButton.setOnClickListener(new View.OnClickListener() {

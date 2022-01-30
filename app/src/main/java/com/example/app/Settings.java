@@ -36,7 +36,6 @@ public class Settings extends AppCompatActivity {
     public static final String title3 = "string_title2";
     public static final String title4 = "string_title3";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Stuff up here are defaults unless commented
@@ -45,23 +44,15 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         getSupportActionBar().hide();
 
-        TinyDB tinydb = new TinyDB(getApplicationContext());
-
         //Declarations
         switchTheme = findViewById(R.id.switch_thememode);
         bgview = findViewById(R.id.imageview_bg);
         switchTemperature = findViewById(R.id.switch_temp);
         savebutton = findViewById(R.id.savebutton);
 
-        //loads settings
-        switchTheme.setChecked(tinydb.getBoolean(SWITCHTHEME));
-        switchTemperature.setChecked(tinydb.getBoolean(TEMPSWITCH));
+        loadConfig(); //Loads settings config
+        checkTheme(); //Initial check
 
-        //sets theme initially
-        if (tinydb.getBoolean(SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
-        else bgview.setImageResource(R.drawable.image_bgdark);
-
-        //save button (restarts the program)
         savebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,23 +62,26 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-        //onClickListener for theme switch
+        //Switch onClickListener like if the switch was to get clicked, it would set this function off.
         switchTheme.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tinydb.putBoolean(SWITCHTHEME, switchTheme.isChecked());
-                //sets theme on switch, not initially
-                if (tinydb.getBoolean(SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
-                else bgview.setImageResource(R.drawable.image_bgdark);
+                saveSwitch(SWITCHTHEME, switchTheme.isChecked());
+                //Sets theme bg
+                if (switchTheme.isChecked()) {
+                    bgview.setImageResource(R.drawable.image_bglight);
+                }
+                else {
+                    bgview.setImageResource(R.drawable.image_bgdark);
+                }
             }
         });
 
-        //onClickListener for temperature switch
         switchTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tinydb.putBoolean(TEMPSWITCH, switchTemperature.isChecked());
-                //Sets temp mode
+                saveSwitch(TEMPSWITCH, switchTemperature.isChecked());
+                //Sets theme bg
                 if (switchTemperature.isChecked()) {
 
                     temperatureMode = true;
@@ -97,5 +91,31 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void checkTheme() { //Checks theme and initializes it properly
+        if (switchTheme.isChecked()) {
+            bgview.setImageResource(R.drawable.image_bglight);
+        }
+        else {
+            bgview.setImageResource(R.drawable.image_bgdark);
+        }
+    }
+
+    public void saveSwitch(String name, boolean value) {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
+        SharedPreferences.Editor modifier = prefs.edit(); //Modifier for preference saving
+        modifier.putBoolean(name, value); //Update value
+        modifier.commit(); //Commit and save
+    }
+
+    public void loadConfig() {
+        SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
+        switchThemeCheck = prefs.getBoolean(SWITCHTHEME, false); //Gets value of themecheck and loads it
+        switchTemperatureCheck = prefs.getBoolean(TEMPSWITCH, false); //Gets value of temperature check and loads it
+
+        //Visual Loader (like sets it true or false visual wise)
+        switchTheme.setChecked(switchThemeCheck);
+        switchTemperature.setChecked(switchTemperatureCheck);
     }
 }
