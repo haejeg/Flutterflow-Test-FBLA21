@@ -32,6 +32,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.app.Email" />
         <activity android:name="com.example.app.Settings" />
         <activity android:name="com.example.app.Menu" />
         <activity android:name="com.example.app.ScheduleAdder" />

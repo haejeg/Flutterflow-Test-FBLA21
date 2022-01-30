@@ -53,6 +53,7 @@ public class Menu extends AppCompatActivity {
     private ImageView addScheduleButton;
     private TextView txtCalender;
     private TextView txtLunch;
+    private ImageButton emailButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,7 @@ public class Menu extends AppCompatActivity {
         txtFood =  findViewById(R.id.textView4);
         addScheduleButton = findViewById(R.id.imageView);
         txtLunch = findViewById(R.id.textView7);
+        emailButton = findViewById(R.id.imageButton2);
 
         //get calender stuff so lunch menu hyperlink stays updated and requires no manual stuff
         int year = Calendar.getInstance().get(Calendar.YEAR); //2022
@@ -113,6 +115,14 @@ public class Menu extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Menu.this, Settings.class);
+                startActivity(intent);
+            }
+        });
+
+        emailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, Email.class);
                 startActivity(intent);
             }
         });

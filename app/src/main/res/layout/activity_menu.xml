@@ -105,7 +105,23 @@
         android:layout_marginEnd="@dimen/_12sdp"
         android:background="@null"
         android:scaleType="fitXY"
-        app:srcCompat="@drawable/icon_settings"
+        app:srcCompat="@drawable/ic_baseline_settings_24"
+        app:tint="@color/white"
+        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="@dimen/_25sdp"
+        android:layout_height="@dimen/_25sdp"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_12sdp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_baseline_email_24"
         app:tint="@color/white"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -124,6 +140,5 @@
         app:srcCompat="@drawable/icon_add"
         app:tint="@color/white"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
 
 </RelativeLayout>
