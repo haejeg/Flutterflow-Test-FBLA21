@@ -30,4 +30,19 @@
         android:translationZ="-1dp"
         app:srcCompat="@drawable/image_bgdark" />
 
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="384dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Email title"
+        android:textColor="@color/white" />
+
 </RelativeLayout>
