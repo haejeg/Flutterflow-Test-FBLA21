@@ -79,7 +79,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="@dimen/_10sdp"
         android:fontFamily="sans-serif-light"
-        android:text="Crashes for some reason"
+        android:text="Theme mode"
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 

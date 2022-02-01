@@ -30,6 +30,16 @@
         android:translationZ="-1dp"
         app:srcCompat="@drawable/image_bgdark" />
 
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_25sdp"
+        android:backgroundTint="#302b40"
+        android:text="Send" />
+
     <EditText
         android:id="@+id/editTextTextPersonName"
         android:layout_width="384dp"
@@ -44,5 +54,40 @@
         android:inputType="textPersonName"
         android:text="Email title"
         android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName5"
+        android:layout_width="384dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_below="@+id/editTextTextPersonName"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Recipients"
+        android:textColor="@color/white" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName6"
+        android:layout_width="384dp"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_above="@+id/button2"
+        android:layout_below="@+id/editTextTextPersonName5"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:ems="10"
+        android:gravity="start"
+        android:inputType="textPersonName"
+        android:lines="10"
+        android:text="Message"
+        android:textColor="@color/white" />
+
 
 </RelativeLayout>

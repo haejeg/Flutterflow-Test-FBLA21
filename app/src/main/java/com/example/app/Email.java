@@ -1,10 +1,22 @@
 package com.example.app;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Email extends AppCompatActivity {
+    private ImageView bgview;
+    private EditText title;
+    private EditText receivers;
+    private EditText message;
+    private Button sendButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //Stuff up here are defaults unless commented
@@ -13,6 +25,40 @@ public class Email extends AppCompatActivity {
         setContentView(R.layout.activity_email);
         getSupportActionBar().hide();
 
+        //variable setter
+        sendButton = findViewById(R.id.button2);
+        bgview = findViewById(R.id.imageview_bg);
+        title = findViewById(R.id.editTextTextPersonName);
+        receivers = findViewById(R.id.editTextTextPersonName5);
+        message = findViewById(R.id.editTextTextPersonName6);
 
+        if (MainActivity.theme) {
+            bgview.setImageResource(R.drawable.image_bglight);
+        }
+        else {
+            bgview.setImageResource(R.drawable.image_bgdark);
+        }
+
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                send();
+            }
+        });
+    }
+
+    private void send() {
+        String recList = receivers.getText().toString();
+        String[] r = recList.split(",");
+        String t = title.getText().toString();
+        String m = message.getText().toString();
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, r);
+        intent.putExtra(Intent.EXTRA_SUBJECT, t);
+        intent.putExtra(Intent.EXTRA_TEXT, m);
+
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an email client"));
     }
 }

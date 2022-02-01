@@ -42,8 +42,12 @@ public class ScheduleAdder extends AppCompatActivity {
         title4.setText(tinydb.getString(Settings.title4));
 
         //Theme check
-        if (tinydb.getBoolean(Settings.SWITCHTHEME)) bgview.setImageResource(R.drawable.image_bglight);
-        else bgview.setImageResource(R.drawable.image_bgdark);
+        if (MainActivity.theme) {
+            bgview.setImageResource(R.drawable.image_bglight);
+        }
+        else {
+            bgview.setImageResource(R.drawable.image_bgdark);
+        }
 
         //onclicklistener for the save button for the scheduler (also starts a new intent for menu)
         addButton.setOnClickListener(new View.OnClickListener() {
