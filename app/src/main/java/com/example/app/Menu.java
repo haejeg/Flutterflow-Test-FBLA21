@@ -94,13 +94,6 @@ public class Menu extends AppCompatActivity {
         //sets schedule
         txtCalender.setText(tinydb.getString(Settings.title) + "\n" + tinydb.getString(Settings.title2) + "\n" + tinydb.getString(Settings.title3) + "\n" + tinydb.getString(Settings.title4));
 
-        if (MainActivity.theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
-
         //onclicklistener to change schedules
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
             @Override

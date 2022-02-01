@@ -19,8 +19,6 @@ import androidx.appcompat.widget.SwitchCompat;
 import com.google.android.material.card.MaterialCardView;
 
 public class Settings extends AppCompatActivity {
-    private SwitchCompat switchTheme;
-    private boolean switchThemeCheck;
     private boolean switchTemperatureCheck;
     private SwitchCompat switchTemperature;
     public boolean temperatureMode;
@@ -29,7 +27,6 @@ public class Settings extends AppCompatActivity {
 
     //SHARED PREFERENCES AKA SETTINGS SAVER//
     public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String SWITCHTHEME = "switch_thememode";
     public static final String TEMPSWITCH = "switch_temp";
     public static final String title = "string_title";
     public static final String title2 = "string_title1";
@@ -45,13 +42,11 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //Declarations
-        switchTheme = findViewById(R.id.switch_thememode);
         bgview = findViewById(R.id.imageview_bg);
         switchTemperature = findViewById(R.id.switch_temp);
         savebutton = findViewById(R.id.savebutton);
 
         loadConfig(); //Loads settings config
-        checkTheme(); //Initial check
 
         savebutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,21 +54,6 @@ public class Settings extends AppCompatActivity {
                 //yes, just in case you are confused, this doesn't do anything except restart the application!
                 Intent intent = new Intent(Settings.this, MainActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        //Switch onClickListener like if the switch was to get clicked, it would set this function off.
-        switchTheme.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                saveSwitch(SWITCHTHEME, switchTheme.isChecked());
-                //Sets theme bg
-                if (switchTheme.isChecked()) {
-                    bgview.setImageResource(R.drawable.image_bglight);
-                }
-                else {
-                    bgview.setImageResource(R.drawable.image_bgdark);
-                }
             }
         });
 
@@ -93,15 +73,6 @@ public class Settings extends AppCompatActivity {
         });
     }
 
-    public void checkTheme() { //Checks theme and initializes it properly
-        if (switchTheme.isChecked()) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
-    }
-
     public void saveSwitch(String name, boolean value) {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
         SharedPreferences.Editor modifier = prefs.edit(); //Modifier for preference saving
@@ -111,11 +82,9 @@ public class Settings extends AppCompatActivity {
 
     public void loadConfig() {
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
-        switchThemeCheck = prefs.getBoolean(SWITCHTHEME, false); //Gets value of themecheck and loads it
         switchTemperatureCheck = prefs.getBoolean(TEMPSWITCH, false); //Gets value of temperature check and loads it
 
         //Visual Loader (like sets it true or false visual wise)
-        switchTheme.setChecked(switchThemeCheck);
         switchTemperature.setChecked(switchTemperatureCheck);
     }
 }

@@ -32,13 +32,6 @@ public class Email extends AppCompatActivity {
         receivers = findViewById(R.id.editTextTextPersonName5);
         message = findViewById(R.id.editTextTextPersonName6);
 
-        if (MainActivity.theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

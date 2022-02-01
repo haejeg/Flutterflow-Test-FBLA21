@@ -22,7 +22,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private ImageView bgview;
-    public static boolean theme;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
         //Declarations
         bgview = findViewById(R.id.imageview_bg);
-
-        //Load configurations
-        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE); //No external interference
-
-        theme = prefs.getBoolean(Settings.SWITCHTHEME, false);
-
-        if (theme) {
-            bgview.setImageResource(R.drawable.image_bglight);
-        }
-        else {
-            bgview.setImageResource(R.drawable.image_bgdark);
-        }
 
         handler();
     }
