@@ -41,6 +41,7 @@ public class Email extends AppCompatActivity {
     }
 
     private void send() {
+        //Just some email stuff
         String recList = receivers.getText().toString();
         String[] r = recList.split(",");
         String t = title.getText().toString();

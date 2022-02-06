@@ -1,16 +1,9 @@
 package com.example.app;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.RenderEffect;
 import android.os.Bundle;
-import android.transition.Explode;
-import android.transition.Transition;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -21,13 +14,11 @@ import com.google.android.material.card.MaterialCardView;
 public class Settings extends AppCompatActivity {
     private boolean switchTemperatureCheck;
     private SwitchCompat switchTemperature;
-    public boolean temperatureMode;
-    private ImageView bgview;
     private MaterialCardView savebutton;
-
     //SHARED PREFERENCES AKA SETTINGS SAVER//
     public static final String SHARED_PREFS = "sharedPrefs";
     public static final String TEMPSWITCH = "switch_temp";
+    //Titles for schedules
     public static final String title = "string_title";
     public static final String title2 = "string_title1";
     public static final String title3 = "string_title2";
@@ -42,7 +33,6 @@ public class Settings extends AppCompatActivity {
         getSupportActionBar().hide();
 
         //Declarations
-        bgview = findViewById(R.id.imageview_bg);
         switchTemperature = findViewById(R.id.switch_temp);
         savebutton = findViewById(R.id.savebutton);
 
@@ -60,20 +50,14 @@ public class Settings extends AppCompatActivity {
         switchTemperature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Using an actual sharedpreferences saver so it doesn't just seem like I can only use tinyDB lol
                 saveSwitch(TEMPSWITCH, switchTemperature.isChecked());
-                //Sets theme bg
-                if (switchTemperature.isChecked()) {
-
-                    temperatureMode = true;
-                }
-                else {
-                    temperatureMode = false;
-                }
             }
         });
     }
 
     public void saveSwitch(String name, boolean value) {
+        //This section is for saving switch values
         SharedPreferences prefs = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE); //No external interference
         SharedPreferences.Editor modifier = prefs.edit(); //Modifier for preference saving
         modifier.putBoolean(name, value); //Update value

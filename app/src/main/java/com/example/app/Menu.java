@@ -1,45 +1,27 @@
 package com.example.app;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-import org.w3c.dom.Text;
-
-import java.io.IOException;
 import java.text.DecimalFormat;
-import java.time.Year;
-import java.time.ZoneId;
 import java.util.Calendar;
-import java.util.Date;
 
 public class Menu extends AppCompatActivity {
     private final String url = "http://api.openweathermap.org/data/2.5/weather?q=Fort%20Collins&appid=dcb45342047b8ec7d3da562f53e8688f"; //string for weather. real time
@@ -160,7 +142,7 @@ public class Menu extends AppCompatActivity {
 //    }
 
     public void getWeatherDetails() {
-        //Load configurations
+        //Grab weather information off of *url* using dates
         TinyDB tinydb = new TinyDB(getApplicationContext());
         temperatureMode = tinydb.getBoolean(Settings.TEMPSWITCH);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -188,12 +170,12 @@ public class Menu extends AppCompatActivity {
                         double temp_feelsLike =+ kelvinToFahrenhite(jsonObjectMain.getDouble("feels_like"));
                         txtWeather.setText("Temperature: " + df.format(temp) + " °F \n" + "Feels like: " + df.format(temp_feelsLike) + " °F");
                     }
-                } catch (JSONException e) {
+                }
+                catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
         }, new Response.ErrorListener() {
-
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(getApplicationContext(), error.toString().trim(), Toast.LENGTH_SHORT).show();
