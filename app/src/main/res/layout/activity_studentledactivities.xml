@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/textView"
+    android:layout_alignParentEnd="true"
+    android:background="@drawable/image_bgdark"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_600sdp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/ralewaybd"
+                android:text="Student led activities"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20sdp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_alignStart="@+id/textView"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:fontFamily="sans-serif-light"
+                android:text="𝗔𝗻𝗶𝗺𝗮𝗹 𝗥𝗲𝘀𝗰𝘂𝗲 𝗖𝗹𝘂𝗯: Casandra Erlich and Elyssa Bauerle and Samara Ronde\nRoom: Media Center\nSchedule: Friday, 4:30 and some lunches\nDescription: Volunteer and fundraise for animal rescues, animals in need.\n\n𝗔𝗻𝗶𝗺𝗮𝘁𝗶𝗼𝗻 𝗔𝗽𝗽𝗿𝗲𝗰𝗶𝗮𝘁𝗶𝗼𝗻 𝗖𝗹𝘂𝗯: Ann Ward\nRoom: 247\nSchedule: Thursday, Lunch\nDescription: To get together and meet with people with similar interests, have fun learning and talking about our passions together (i.e.: learning to animate, watching our favorite appropriate animated movies, etc.)\n\n𝗔𝗻𝗶𝗺𝗲 𝗖𝗹𝘂𝗯: Caroline Kirkpatrick\nRoom:W-110\nSchedule: Thursday, 4:15 – 5:30\nDescription: Anime club is a place for people to watch Anime and meet people who are interested in Anime.\n\n𝗕𝗲𝘆𝗯𝗹𝗮𝗱𝗲 𝗖𝗹𝘂𝗯: Kennon Lafferty\nRoom: TBD\nSchedule: Thursday, Lunch\nDescription: To enjoy ourselves while playing beyblades.\n\n𝗙𝗲𝗹𝗹𝗼𝘄𝘀𝗵𝗶𝗽 𝗼𝗳 𝗖𝗵𝗿𝗶𝘀𝘁𝗶𝗮𝗻 𝗔𝘁𝗵𝗹𝗲𝘁𝗲𝘀: Georgia LaPlante\nRoom: N-121\nSchedule:Wednesday, Lunch\nDescription: To lead coaches and athletes into a growing relationship with Jesus Christ and His church.\n\n𝗚𝗮𝗿𝗳𝗶𝗲𝗹𝗱 𝗖𝗹𝘂𝗯: Gerard Braley\nRoom: E-112\nSchedule: Monday, Lunch\nDescription: To meet and socialize with fellow fans of Garfield the Cat.\n\n𝗣𝗵𝘆𝘀𝗶𝗰𝘀 𝗖𝗼𝗹𝗹𝗮𝗯𝗼𝗿𝗮𝘁𝗶𝗼𝗻 𝗢𝗿𝗴𝗮𝗻𝗶𝘇𝗮𝘁𝗶𝗼𝗻: Thomas Henry\nRoom: N-103\nSchedule: Friday, Lunch\nDescription: Students meet to help each other on physics homework and help each other clarify the specific things they do not understand.\n\n𝗦𝘁𝘂𝗱𝗲𝗻𝘁 𝗦𝗽𝗶𝗸𝗲𝗯𝗮𝗹𝗹 𝗖𝗹𝘂𝗯: Windrem Reed Smith\nRoom: Soccer Field, E-111\nSchedule: Friday, Lunch\nDescription: The purpose of this organization is to gather people who like to play Spikeball. During lunch people are encouraged to play and get exercise after sitting in their classes. It gets people moving and their heart rate up.\n\n𝗨𝗹𝘁𝗶𝗺𝗮𝘁𝗲 𝗙𝗿𝗶𝘀𝗯𝗲𝗲 𝗖𝗹𝘂𝗯: Jacob Schonlau\nRoom: N-116\nSchedule: Tuesday and Friday, 4:15 – 5:30\nDescription: A fun club for anybody of any level to learn and play Ultimate Frisbee.\n\n"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+        </RelativeLayout>
+
+</ScrollView>

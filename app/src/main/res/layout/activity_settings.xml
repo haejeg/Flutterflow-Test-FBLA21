@@ -95,10 +95,10 @@
             android:layout_marginEnd="@dimen/_3sdp"
             android:layout_marginBottom="@dimen/_3sdp"
             android:fontFamily="sans-serif-light"
-            android:textSize="@dimen/_14sdp"
             android:text="Save Settings"
             android:textAlignment="center"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
     </com.google.android.material.card.MaterialCardView>
 
 

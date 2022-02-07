@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ScheduleAdder extends AppCompatActivity {
-    private ImageView bgview;
     private Button addButton;
     private EditText title;
     private EditText title2;
@@ -27,7 +26,6 @@ public class ScheduleAdder extends AppCompatActivity {
         TinyDB tinydb = new TinyDB(getApplicationContext());
 
         //Declare ui elements
-        bgview = findViewById(R.id.imageview_bg);
         addButton = findViewById(R.id.button);
         title = findViewById(R.id.editTextTextPersonName);
         title2 = findViewById(R.id.editTextTextPersonName2);

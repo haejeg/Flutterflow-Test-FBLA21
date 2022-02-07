@@ -14,9 +14,9 @@
     <application
         android:allowBackup="true"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-        android:icon="@drawable/icon"
+        android:icon="@drawable/swag"
         android:label="MyFossil"
-        android:roundIcon="@drawable/icon"
+        android:roundIcon="@drawable/swag"
         android:debuggable="true"
         android:supportsRtl="true"
         android:testOnly="false"
@@ -32,8 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.example.app.SchoolSponsored"/>
         <activity android:name="com.example.app.Email" />
         <activity android:name="com.example.app.Settings" />
+        <activity android:name="com.example.app.StudentLed"/>
         <activity android:name="com.example.app.Menu" />
         <activity android:name="com.example.app.ScheduleAdder" />
     </application>

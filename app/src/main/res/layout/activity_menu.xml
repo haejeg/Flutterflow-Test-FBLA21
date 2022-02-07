@@ -56,6 +56,66 @@
         android:textColor="@color/white"
         android:textSize="@dimen/_15sdp" />
 
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/schoolactbutton"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:clickable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="@dimen/_1sdp"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:fontFamily="sans-serif-light"
+            android:text="View school sponsored activities"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/studentledbutton"
+        android:layout_width="@dimen/_250sdp"
+        android:layout_height="@dimen/_30sdp"
+        android:layout_below="@+id/schoolactbutton"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:clickable="true"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="@dimen/_5sdp"
+        app:strokeColor="@color/white"
+        app:strokeWidth="@dimen/_1sdp"
+        tools:ignore="TouchTargetSizeCheck">
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:fontFamily="sans-serif-light"
+            android:text="View student led activities"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"

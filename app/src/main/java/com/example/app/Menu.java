@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -36,6 +38,7 @@ public class Menu extends AppCompatActivity {
     private TextView txtCalender;
     private TextView txtLunch;
     private ImageButton emailButton;
+    private CardView schoolSponsored, studentLed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +51,7 @@ public class Menu extends AppCompatActivity {
         TinyDB tinydb = new TinyDB(getApplicationContext());
 
         //declare ui elements here
+        studentLed = findViewById(R.id.studentledbutton);
         txtCalender = findViewById(R.id.textView5);
         txtWeather = findViewById(R.id.textView3);
         settingsButton = findViewById(R.id.imageButton);
@@ -55,6 +59,7 @@ public class Menu extends AppCompatActivity {
         addScheduleButton = findViewById(R.id.imageView);
         txtLunch = findViewById(R.id.textView7);
         emailButton = findViewById(R.id.imageButton2);
+        schoolSponsored = findViewById(R.id.schoolactbutton);
 
         //get calender stuff so lunch menu hyperlink stays updated and requires no manual stuff
         int year = Calendar.getInstance().get(Calendar.YEAR); //2022
@@ -73,6 +78,22 @@ public class Menu extends AppCompatActivity {
 
         //sets schedule
         txtCalender.setText(tinydb.getString(Settings.title) + "\n" + tinydb.getString(Settings.title2) + "\n" + tinydb.getString(Settings.title3) + "\n" + tinydb.getString(Settings.title4));
+
+        schoolSponsored.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, SchoolSponsored.class);
+                startActivity(intent);
+            }
+        });
+
+        studentLed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Menu.this, StudentLed.class);
+                startActivity(intent);
+            }
+        });
 
         //onclicklistener to change schedules
         addScheduleButton.setOnClickListener(new View.OnClickListener() {
