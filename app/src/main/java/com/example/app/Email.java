@@ -36,13 +36,6 @@ public class Email extends AppCompatActivity {
             }
         });
 
-        addRecButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
-
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
