@@ -1,6 +1,7 @@
 package com.example.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
@@ -29,7 +30,6 @@ public class Menu extends AppCompatActivity {
 
     //ui elements
     private TextView txtWeather, txtFood;
-    private ImageView bgview;
     public boolean temperatureMode;
     private ImageButton settingsButton;
     private ImageView addScheduleButton;
@@ -46,8 +46,6 @@ public class Menu extends AppCompatActivity {
         getSupportActionBar().hide();
 
         TinyDB tinydb = new TinyDB(getApplicationContext());
-
-        bgview = findViewById(R.id.imageview_bg);
 
         //declare ui elements here
         txtCalender = findViewById(R.id.textView5);
@@ -143,8 +141,8 @@ public class Menu extends AppCompatActivity {
 
     public void getWeatherDetails() {
         //Grab weather information off of *url* using dates
-        TinyDB tinydb = new TinyDB(getApplicationContext());
-        temperatureMode = tinydb.getBoolean(Settings.TEMPSWITCH);
+        SharedPreferences prefs = getSharedPreferences(Settings.SHARED_PREFS, MODE_PRIVATE);
+        temperatureMode = prefs.getBoolean(Settings.TEMPSWITCH, false);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
