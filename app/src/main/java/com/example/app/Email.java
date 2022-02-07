@@ -10,7 +10,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.View.OnFocusChangeListener;
 
 public class Email extends AppCompatActivity {
-    private ImageView addRecButton;
     private EditText title;
     private EditText receivers;
     private EditText message;
@@ -26,7 +25,6 @@ public class Email extends AppCompatActivity {
 
         //variable setter
         sendButton = findViewById(R.id.button2);
-        addRecButton = findViewById(R.id.imageView2);
         title = findViewById(R.id.editTextTextPersonName);
         receivers = findViewById(R.id.editTextTextPersonName5);
         message = findViewById(R.id.editTextTextPersonName6);
